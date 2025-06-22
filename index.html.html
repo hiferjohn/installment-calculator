@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>分期付款計算器 PWA</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4CAF50">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      background: linear-gradient(to bottom, #e8f5e9, #ffffff);
+      color: #333;
+    }
+    h2 {
+      text-align: center;
+      font-size: 32px;
+      color: #2e7d32;
+      margin-bottom: 30px;
+    }
+    label {
+      display: block;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    input, select {
+      padding: 10px;
+      width: 100%;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    .form-section {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+    }
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #388e3c;
+    }
+    #result {
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .summary-cards {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .summary-cards p {
+      background: #e8f5e9;
+      border-left: 5px solid #4CAF50;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-size: 16px;
+      min-width: 240px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+    th {
+      background-color: #a5d6a7;
+      color: #1b5e20;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    @media (max-width: 600px) {
+      .summary-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2>分期付款計算器 PWA</h2>
+
+  <div class="form-section">
+    <label>商品總價：<input type="number" id="amount" placeholder="例如：30000"></label>
+    <label>分期期數（月）：<input type="number" id="months" placeholder="例如：12"></label>
+    <label>年利率（%）：<input type="number" id="rate" placeholder="例如：5"></label>
+    <label>還款方式：
+      <select id="method">
+        <option value="equal">本息平均</option>
+        <option value="principal">本金攤還</option>
+        <option value="onetimes">一次付清</option>
+      </select>
+    </label>
+    <label>幣別：
+      <select id="currency">
+        <option value="TWD">TWD（新台幣）</option>
+        <option value="USD">USD（美元）</option>
+        <option value="JPY">JPY（日圓）</option>
+        <option value="CNY">CNY（人民幣）</option>
+        <option value="EUR">EUR（歐元）</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="button-group">
+    <button onclick="calculate()">計算</button>
+    <button onclick="window.print()">列印</button>
+    <button onclick="downloadExcel()">下載 Excel</button>
+    <button onclick="downloadPDF()">下載 PDF</button>
+  </div>
+
+  <p id="result"></p>
+  <div class="summary-cards" id="summary"></div>
+  <div id="table-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    // [同上完整 JS 計算邏輯，可保留無需重貼]
+  </script>
+</body>
+</html>
